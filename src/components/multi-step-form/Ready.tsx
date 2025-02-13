@@ -1,35 +1,33 @@
 import React, { useRef, useState } from 'react'
 import Button from '../ui/button'
-import ticketBackground from "../../assets/ticket-background.svg"
-import UserImage from "../../assets/User.img.png"
-import Barcode from 'react-barcode'
-import generatePDF from 'react-to-pdf';
-import { clearFormData, saveTicketToCollection } from '../../utils/storage'
+import generatePDF, { Margin, Options } from 'react-to-pdf';
+import { saveTicketToCollection } from '../../utils/storage'
 import TicketTemplate from './TicketTemplate'
 
-type Props = {}
 
 const Ready = ({ data }) => {
 
     const targetRef = useRef<HTMLDivElement>(null);
     const [isGenerating, setIsGenerating] = useState(false);
 
+    const options: Options = {
+        filename: `ticket-${data.name}-${Date.now()}.pdf`,
+        method: "save",
+        page: {
+            // margin is in MM, default is Margin.NONE = 0
+            margin: Margin.SMALL,
+            format: "A4",
+            orientation: "portrait",
+        },
+
+    }
 
 
     const handleDownloadTicket = async () => {
         setIsGenerating(true);
 
         try {
-            await generatePDF({
-                element: ticketRef.current,
-                filename: `ticket-${data.name}-${Date.now()}.pdf`,
-                options: {
-                    format: [300, 600],
-                    unit: 'px',
-                },
-            });
-
-
+            await generatePDF(targetRef, options)
             saveTicketToCollection(data);
 
         } catch (error) {
@@ -68,12 +66,5 @@ const Ready = ({ data }) => {
             </div>
         </div>
     )
-}
-const EventDetail = () => {
-    return <div className='flex flex-col text-white text-center  border-x-[#07373f] border-b-[#07373f] border-t-0 rounded-md /ticket-detail-image mb-3 '>
-        <h3 className='font-bold text-white text-xl md:text-2xl '>Techember Fest ”25</h3>
-        <p className='text-[0.625rem]'>Join us for an unforgettable experience at [Event Name]! Secure your spot now.</p>
-        <p className='flex flex-col gap-1 text-[0.625rem] justify-center'><span>📍04 Rumens road, Ikoyi, Lagos</span> <span>March 15, 2025 | 7:00 PM</span></p>
-    </div>
 }
 export default Ready

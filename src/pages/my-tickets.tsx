@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getMyTickets, TicketData, deleteTicket } from '../utils/storage';
 import { format } from 'date-fns';
 import Button from '../components/ui/button';

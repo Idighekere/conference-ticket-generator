@@ -2,9 +2,7 @@
 import { loadFormData, saveFormData } from '../utils/storage'
 import { AttendeeDetails, Ready, TicketSelection } from '../components/multi-step-form'
 import React, { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router'
-
-type Props = {}
+import { TicketFormData } from '../constants/validationSchema'
 
 const steps = [{
   id: 1,
@@ -19,11 +17,11 @@ const steps = [{
 ]
 
 
-const Events = (props: Props) => {
+const Events = () => {
 
   // const [searchParams, setSearchParams] = useSearchParams()
 
-  const [currentStep, setCurrentStep] = useState<any>(1)
+  const [currentStep, setCurrentStep] = useState<number>(1)
   //Number(searchParams.get('step'))
   const initialFormData = {
     ticketType: "",
@@ -48,7 +46,7 @@ const Events = (props: Props) => {
 
   }, [currentStep,])
 
-  const updateFormData = (newData) => {
+  const updateFormData = (newData: Partial<TicketFormData>) => {
     setFormData(prev => ({ ...prev, ...newData }))
     saveFormData({ ...formData, ...newData })
     console.log(formData)
@@ -73,15 +71,15 @@ const Events = (props: Props) => {
 
     switch (currentStep) {
       case 1:
-        return <TicketSelection currentStep={currentStep} handleNext={handleNext} handlePrev={handlePrev} data={data} updateFormData={updateFormData} />
+        return <TicketSelection handleNext={handleNext} data={data} updateFormData={updateFormData} />
       case 2:
-        return <AttendeeDetails currentStep={currentStep} handlePrev={handlePrev} handleNext={handleNext} data={data} updateFormData={updateFormData} />
+        return <AttendeeDetails handlePrev={handlePrev} handleNext={handleNext} data={data} updateFormData={updateFormData} />
 
       case 3:
-        return <Ready currentStep={currentStep} handlePrev={handlePrev} data={data} updateFormData={updateFormData} />
+        return <Ready data={data} />
 
       default:
-        return <TicketSelection currentStep={currentStep} handlePrev={handlePrev} data={data} updateFormData={updateFormData} handleNext={handleNext} />;
+        return <TicketSelection data={data} updateFormData={updateFormData} handleNext={handleNext} />;
     }
   }
   return (

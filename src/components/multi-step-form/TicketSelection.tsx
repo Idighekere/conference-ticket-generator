@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from '../ui/button'
 import { useFormik } from 'formik';
-import { ticketSelectionSchema } from '../../constants/validationSchema';
+import { TicketFormData, ticketSelectionSchema } from '../../constants/validationSchema';
 import { saveFormData } from '../../utils/storage';
 
-type Props = {}
+type Props = {
+    handleNext: () => void,
+    data: TicketFormData;
+    updateFormData: (data: Partial<TicketFormData>) => void
+}
 
 const ticketType = [
     {
@@ -30,10 +34,9 @@ const ticketType = [
     },
 ]
 
-const TicketSelection = ({ currentStep, handleNext, data, updateFormData }: { currentStep: number }) => {
+const TicketSelection = ({ handleNext, data, updateFormData }: Props) => {
 
-    const [selectedTicket, setSelectedTicket] = useState(ticketType[0]?.type || "Regular");
-    const [ticketCount, setTicketCount] = useState(1);
+
 
 
     const formik = useFormik({
@@ -49,19 +52,9 @@ const TicketSelection = ({ currentStep, handleNext, data, updateFormData }: { cu
         }
     })
 
-    const handleTicketSelection = (type: string) => {
-        setSelectedTicket(type);
-    };
 
-    const handleTicketCountChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setTicketCount(Number(event.target.value));
-    };
 
-    const onSubmit = () => {
-        handleNext()
-        updateFormData({ ticketType: selectedTicket, ticketCount });
 
-    }
     return (
         <div className='flex flex-col gap-3 mt-3 text-[#fafafa] bg-[#08252b] p-3'>
             <TicketImage />
@@ -98,7 +91,7 @@ const TicketSelection = ({ currentStep, handleNext, data, updateFormData }: { cu
 
                 </div>
                 <div className='flex flex-col-reverse md:flex-row gap-2 md:gap-10'>
-                    <Button className="w-full" type="reset" title='Cancel' variant='outline' onClick={formik.resetForm} />
+                    <Button className="w-full" type="reset" title='Cancel' variant='outline' onClick={() => formik.resetForm} />
                     <Button className="w-full" type='submit' title='Next' ></Button>
                 </div>
 

@@ -1,8 +1,9 @@
-@import 'tailwindcss';
-
 @import url('https://fonts.googleapis.com/css2?family=Jeju+Myeongjo&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap&family=Road+Rage&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https: //fonts.googleapis.com/css2?family=Road+Rage&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alatsi&display=swap');
+
+@import 'tailwindcss';
 
 /* Plugins */
 @plugin '@tailwindcss/forms';
@@ -29,7 +30,7 @@
   --font-jeju: 'Jeju Myeongjo', 'script';
   --font-roboto: 'Roboto', 'serif';
   --font-alatsi: 'Alatsi', 'sans-serif';
-  --font-rage: 'Road Rage', 'serif';
+  --font-rage: 'Road Rage', 'Roboto';
 }
 
 .background-gradient {

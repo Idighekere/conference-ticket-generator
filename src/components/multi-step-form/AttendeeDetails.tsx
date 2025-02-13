@@ -1,18 +1,19 @@
-import React, { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import Button from '../ui/button'
 import envelope from "../../assets/envelope.svg"
 import upload from "../../assets/upload.svg"
 import { saveFormData, uploadImage } from '../../utils/storage'
 import { useFormik } from 'formik';
-import { attendeeDetailsSchema } from '../../constants/validationSchema'
+import { attendeeDetailsSchema, TicketFormData } from '../../constants/validationSchema'
 
 type Props = {
-    handleNext: () => void
+    handleNext: () => void,
+    handlePrev: () => void;
+    data: TicketFormData;
+    updateFormData: (data: Partial<TicketFormData>) => void
 }
 
 const AttendeeDetails = ({ handleNext, handlePrev, data, updateFormData }: Props) => {
-    const [imageUrl, setImageUrl] = useState(undefined)
-
     const formik = useFormik({
         initialValues: {
             name: data?.name || '',
@@ -21,7 +22,7 @@ const AttendeeDetails = ({ handleNext, handlePrev, data, updateFormData }: Props
             image: data?.image || '',
         },
         validationSchema: attendeeDetailsSchema,
-        onSubmit: (values) => {
+        onSubmit: (values: Partial<TicketFormData>) => {
             updateFormData(values);
             saveFormData(values);
             handleNext();
@@ -30,7 +31,7 @@ const AttendeeDetails = ({ handleNext, handlePrev, data, updateFormData }: Props
     return (
         <div className='flex flex-col gap-3 mt-3 text-[#fafafa] bg-[#08252b] p-3 font-roboto'>
             <form className='flex flex-col gap-5 mt-2' onSubmit={formik.handleSubmit}>
-                <AvatarUpload imageUrl={formik.values.image} setImageUrl={(type) => formik.setFieldValue('image', type)} />
+                <AvatarUpload imageUrl={formik.values.image} setImageUrl={(type: ChangeEvent) => formik.setFieldValue('image', type)} />
                 <span className='bg-border-green w-full h-[1px]' />
 
 
@@ -74,19 +75,19 @@ const AttendeeDetails = ({ handleNext, handlePrev, data, updateFormData }: Props
         </div>
     )
 }
-const AvatarUpload = ({ setImageUrl, imageUrl }) => {
+const AvatarUpload = ({ setImageUrl, imageUrl }: { setImageUrl: (type: ChangeEvent) => unknown; imageUrl: string }) => {
 
-    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [, setImageFile] = useState<File | unknown>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
 
     const updateImage = async (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
             const file = event.target.files[0];
-            // setImageFile(file);
+            setImageFile(file);
             const url = await uploadImage(file)
             setImageUrl(url)
-            console.log(url)
+            // console.log(url)
         }
     };
     const handleImageUploadClick = () => {
@@ -107,7 +108,7 @@ const AvatarUpload = ({ setImageUrl, imageUrl }) => {
 
             </div>
 
-            <input type="file" name="image" ref={fileInputRef} className='hidden' onChange={updateImage} value={imageFile} />
+            <input type="file" name="image" ref={fileInputRef} className='hidden' onChange={updateImage} />
 
         </div>
 

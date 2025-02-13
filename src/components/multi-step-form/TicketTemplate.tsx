@@ -16,45 +16,45 @@ type TicketTemplateProps = {
 
 const TicketTemplate = React.forwardRef<HTMLDivElement, TicketTemplateProps>(({ data }, ref) => {
     return (
-        <div ref={ref} className="flex flex-col justify-center items-center relative w-[400px] mx-auto font-roboto">
+        <div ref={ref} className="flex flex-col justify-center items-center relative w-[300px] h-[600px]  mx-auto font-roboto max-w-full">
             <div className="relative w-full">
-                <img src={ticketBackground} alt="" className="w-96" />
+                <img src={ticketBackground} alt="" className="w-102 " />
 
-                <div className="absolute h-[68%] top-[4%] m-5 border border-primary-green rounded-lg p-4 md:p-5 w-[calc(100%-40px)] max-w-[21.5rem]">
+                <div className="shrink absolute h-[68%] top-[3%] m-5 border border-primary-green rounded-lg p-4 md:p-5 w-[calc(100%-40px)] max-w-[21.5rem]">
                     <div className="flex flex-col justify-center items-center">
                         <EventDetail />
-                        <img src={data?.image} alt="" className="w-32 h-32 mb-2" />
+                        <img src={data?.image} alt="" className="w-24 h-24 md:w-32 md:h-32 mb-2 object-cover !rounded-lg upload-border" />
                     </div>
 
                     <div className="border-2 border-[#133D44] bg-[#08343C] p-2 rounded-lg font-roboto">
                         <div className="grid grid-cols-2">
                             {/* Name */}
                             <div className="flex flex-col text-[0.75rem] font-bold p-1 border-r border-[#12464E]">
-                                <span className="text-gray/80 font-normal text-[0.625rem]">Name</span>
+                                <span className="text-gray font-normal text-[0.625rem]">Name</span>
                                 <span className="text-[#fff]">{data?.name}</span>
                             </div>
 
                             {/* Email */}
                             <div className="flex flex-col text-[0.75rem] font-bold p-1">
-                                <span className="text-gray/80 font-normal text-[0.625rem]">Email</span>
+                                <span className="text-gray font-normal text-[0.625rem]">Email</span>
                                 <span className="text-[#fff] break-words">{data?.email}</span>
                             </div>
 
                             {/* Ticket Type */}
                             <div className="flex flex-col text-[0.75rem] font-bold p-1 border-t border-b border-r border-[#12464E]">
-                                <span className="text-gray/80 font-normal text-[0.625rem]">Ticket Type</span>
+                                <span className="text-gray font-normal text-[0.625rem]">Ticket Type</span>
                                 <span className="text-[#fff] text-[0.625rem]">{data?.ticketType}</span>
                             </div>
 
                             {/* Ticket Count */}
                             <div className="flex flex-col text-[0.75rem] font-bold p-1 border-t border-b border-[#12464E]">
-                                <span className="text-gray/80 font-normal text-[0.625rem]">Ticket for:</span>
+                                <span className="text-gray font-normal text-[0.625rem]">Ticket for:</span>
                                 <span className="text-[#fff] text-[0.625rem]">{data?.ticketCount}</span>
                             </div>
 
                             {/* Special Request */}
                             <div className="col-span-2 flex flex-col text-[0.625rem] p-1">
-                                <span className="text-gray/80 font-normal text-[0.625rem]">Special Request:</span>
+                                <span className="text-gray font-normal text-[0.625rem]">Special Request:</span>
                                 <span className="text-[#fff] text-[0.625rem]">{data?.request || 'No special requests'}</span>
                             </div>
                         </div>
@@ -76,6 +76,8 @@ const TicketTemplate = React.forwardRef<HTMLDivElement, TicketTemplateProps>(({ 
             </div>
         </div>
     );
+
+
 });
 
 const EventDetail = () => {

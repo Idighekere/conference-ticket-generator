@@ -5,7 +5,7 @@ type ButtonProps = {
     variant?: "primary" | "secondary" | 'outline' | 'danger'
     className?: string;
     type?: "submit" | 'button' | 'reset'
-    onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+    onClick?: MouseEventHandler<HTMLButtonElement> | undefined | (() => void);
     disabled?: boolean
 }
 const Button = ({ title, variant = "primary", className, type = "button", onClick, disabled }: ButtonProps) => {

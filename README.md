@@ -1,4 +1,37 @@
-# React + TypeScript + Vite
+
+# 🎟️ Event Ticket Booking UI – Open Source Practice Project
+
+## Overview
+A beginner-friendly **Event Ticket Booking UI** designed for developers to clone, explore, and extend. It features a seamless, login-free **three-step booking flow**, allowing users to book tickets effortlessly.
+
+## Features
+✅ **Ticket Selection** – Browse **Free & Paid** tickets in list/card view.
+✅ **Attendee Details** – Capture name, email, phone, and profile picture.
+✅ **Payment Integration (Coming soon)** – Supports **Stripe, Paystack, or Flutterwave**.
+✅ **Ticket Confirmation** – Generates **QR Codes** and **downloadable PDFs**.
+
+## Tech Stack
+🖥️ **Frontend:** React, Tailwind CSS
+<!-- 🔗 **Backend (Optional):** Node.js & Express / Firebase Functions   -->
+<!-- 💳 **Payments:** Stripe, Paystack, Flutterwave   -->
+📦 **Storage:**  Cloudinary (for profile pictures)
+
+## How to Use
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/idighekere/conference-ticket-generator.git
+   cd conference-ticket-generator
+2. **Install dependencies:**
+  ```bash
+
+  pnpm install
+3. **Run the project:**
+  ```bash
+  npm run dev
+
+
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -6,45 +39,3 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```

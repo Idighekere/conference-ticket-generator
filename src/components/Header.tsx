@@ -25,7 +25,7 @@ const Header = () => {
 
 
     return (
-        <header className="flex justify-between items-center border-border-green border py-3 px-4 rounded-2xl bg-[#05252c66] sticky top-0 z-50 backdrop-blur-[2px] font-jeju">
+        <header className="flex justify-between items-center border-border-green border py-3 px-4 rounded-2xl bg-[#05252c66] sticky top-5 z-50 backdrop-blur-[2px] font-jeju">
 
             <div><img src={logo} alt="Logo" /></div>
             <nav className="md:flex gap-4 hidden">

@@ -49,7 +49,7 @@ const Events = () => {
   const updateFormData = (newData: Partial<TicketFormData>) => {
     setFormData(prev => ({ ...prev, ...newData }))
     saveFormData({ ...formData, ...newData })
-    console.log(formData)
+    // console.log(formData)
   }
 
   const handleNext = () => {
@@ -67,7 +67,7 @@ const Events = () => {
       setCurrentStep((prev: number) => prev - 1)
     }
   }
-  const renderForm = (currentStep: number, handleNext: () => void, handlePrev: () => void, data, updateFormData) => {
+  const renderForm = (currentStep: number, handleNext: () => void, handlePrev: () => void, data: TicketFormData, updateFormData: (newDta: Partial<TicketFormData>) => void) => {
 
     switch (currentStep) {
       case 1:

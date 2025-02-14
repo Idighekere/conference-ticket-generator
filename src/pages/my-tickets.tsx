@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { getMyTickets, TicketData, deleteTicket } from '../utils/storage';
-import { format } from 'date-fns';
 import Button from '../components/ui/button';
 
 const MyTickets = () => {
@@ -112,7 +111,7 @@ const TicketCard = ({
 
                 <div className="text-xs text-gray/90">
                     <p>Purchased by: {ticket.purchasedBy}</p>
-                    <p>Date: {format(new Date(ticket.purchaseDate), 'MMM dd, yyyy HH:mm')}</p>
+                    <p>Date: {new Date(ticket.purchaseDate).toLocaleString()}</p>
                 </div>
 
                 <div className="flex gap-2 mt-2">

@@ -94,3 +94,40 @@
   gap: 0.4rem;
   font-family: Roboto, serif;
 }
+
+.ticket-card {
+  --mask: radial-gradient(40px at 40px 40px, #0000 98%, #000) -40px -40px,
+    radial-gradient(40px at calc(100% - 40px) 40px, #0000 98%, #000)
+      calc(100% + 40px) -40px;
+  position: absolute;
+  mask: var(--mask);
+  background: radial-gradient(
+      57.42% 106.59% at 14.02% 32.06%,
+      rgba(36, 160, 181, 0.62),
+      rgba(36, 160, 181, 0.2)
+    ),
+    rgba(10, 12, 17, 0.1);
+  border: 1px solid red;
+}
+
+.dottedDivider {
+  position: relative;
+  z-index: 1 !important;
+}
+
+.ticket-border2 {
+  --mask: radial-gradient(
+        40px at 40px 40px,
+        #0000 calc(98% - 2px),
+        #000 calc(100% - 2px),
+        #0000
+      ) -40px -40px,
+    linear-gradient(90deg, #000 2px, #0000 0) -1px 50% / 100% calc(100% - 78px) repeat-x,
+    linear-gradient(#000 2px, #0000 0) 50% -1px / calc(100% - 78px) 100% repeat-y;
+  justify-content: center;
+  align-items: center;
+  height: 151px;
+  display: flex;
+  position: relative;
+  border-radius: 14px;
+}

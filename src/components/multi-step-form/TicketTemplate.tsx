@@ -1,7 +1,6 @@
 import React from 'react';
-import Barcode from 'react-barcode';
+import { ReactBarcode } from 'react-jsbarcode';
 import ticketBackground from "../../assets/ticket-background.svg";
-import UserImage from "../../assets/User.img.png";
 
 type TicketTemplateProps = {
     data: {
@@ -16,8 +15,9 @@ type TicketTemplateProps = {
 
 const TicketTemplate = React.forwardRef<HTMLDivElement, TicketTemplateProps>(({ data }, ref) => {
     return (
-        <div ref={ref} className="flex flex-col justify-center items-center relative w-[300px] h-[600px]  mx-auto font-roboto max-w-full">
-            <div className="relative w-full">
+        <div ref={ref} className="flex flex-col justify-center items-center relative /w-[300px] /h-[600px]  mx-auto font-roboto max-w-full  ">
+
+            <div className=" relative w-full">
                 <img src={ticketBackground} alt="" className="w-102 " />
 
                 <div className="shrink absolute h-[68%] top-[3%] m-5 border border-primary-green rounded-lg p-4 md:p-5 w-[calc(100%-40px)] max-w-[21.5rem]">
@@ -62,15 +62,19 @@ const TicketTemplate = React.forwardRef<HTMLDivElement, TicketTemplateProps>(({ 
                 </div>
 
                 <div className="absolute bottom-[2%] flex w-full justify-center left-0 right-0">
-                    <Barcode
+
+                    <ReactBarcode
                         value={`TECH-${data?.ticketType}-${Date.now()}`}
-                        background="transparent"
-                        lineColor="#fafafa"
-                        font="Roboto"
-                        format="CODE128A"
-                        width={1}
-                        height={70}
-                        margin={0}
+                        options={{
+                            font: "Roboto",
+                            lineColor: "#fafafa",
+                            background: "transparent",
+                            format: "CODE128A",
+                            width: 1,
+
+                            margin: 0,
+                            height: 70,
+                        }}
                     />
                 </div>
             </div>

@@ -21,14 +21,15 @@ A beginner-friendly **Event Ticket Booking UI** designed for developers to clone
    ```bash
    git clone https://github.com/idighekere/conference-ticket-generator.git
    cd conference-ticket-generator
+   ```
 2. **Install dependencies:**
   ```bash
-
   pnpm install
+  ```
 3. **Run the project:**
   ```bash
   npm run dev
-
+  ```
 
 
 ## React + TypeScript + Vite
